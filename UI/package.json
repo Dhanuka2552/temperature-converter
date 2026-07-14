@@ -1,0 +1,16 @@
+{
+  "name": "temp-converter-web-client",
+  "version": "1.0.0",
+  "description": "Node/Express UI that proxies to the Spring Boot temperature converter backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

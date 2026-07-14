@@ -1,0 +1,42 @@
+services:
+  mongodb:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/temp_db
+      - SPRING_API_KEY=SUPER-SECRET-DEV-KEY-2552
+    ports:
+      - "8081:8081"
+
+  ui:
+    build:
+      context: ./UI
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    environment:
+      - SPRING_API_URL=http://backend:8081
+      - SPRING_API_KEY=SUPER-SECRET-DEV-KEY-2552
+    ports:
+      - "3000:3000"
+
+volumes:
+  mongo-data:

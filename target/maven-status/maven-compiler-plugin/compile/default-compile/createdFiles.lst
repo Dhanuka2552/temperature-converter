@@ -1,0 +1,10 @@
+com\example\tempconverter\service\TemperatureService.class
+com\example\tempconverter\model\ApiKey.class
+com\example\tempconverter\exception\UnauthorizedException.class
+com\example\tempconverter\model\TemperatureLog.class
+com\example\tempconverter\repository\ApiKeyRepository.class
+com\example\tempconverter\controller\TemperatureController.class
+com\example\tempconverter\exception\BadRequestException.class
+com\example\tempconverter\TempconverterApplication.class
+com\example\tempconverter\config\ApiKeyBootstrapConfig.class
+com\example\tempconverter\repository\TemperatureRepository.class
